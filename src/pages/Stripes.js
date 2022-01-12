@@ -12,13 +12,13 @@ export default function Stripes() {
 		let hashes = await d3.json(
 			process.env.PUBLIC_URL + `/assets/${mainName}-hashes.json`
 		);
-		// hashes = hashes.slice(0, 10);
+		hashes = hashes.slice(0, 50);
 		const loaded = [];
 		for (let i = 0; i < hashes.length; i++) {
 			setLoading(i);
 			const h = hashes[i];
 			const spritesheet = await d3.json(
-				`/assets/${mainName}-spritesheets-h128/${h}-1.json`
+				process.env.PUBLIC_URL + `/assets/${mainName}-spritesheets-h128/${h}-1.json`
 			);
 			hashes[i] = {
 				hash: h,
@@ -27,7 +27,6 @@ export default function Stripes() {
 			loaded.push(hashes[i]);
 			setHashes(loaded);
 		}
-		console.log(hashes);
 		setLoading("done");
 	}, []);
 	return (
