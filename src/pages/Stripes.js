@@ -21,7 +21,7 @@ export default function Stripes() {
 			return { hash: hash, ...d };
 		});
 
-		posts = posts.slice(0, 50);
+		// posts = posts.slice(0, 50);
 
 		const loaded = [];
 		for (let i = 0; i < posts.length; i++) {

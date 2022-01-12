@@ -21,6 +21,8 @@ export default function Video({ data }) {
 								width: f.frame.w,
 								height: f.frame.h,
 								backgroundImage: `url(${process.env.PUBLIC_URL}/assets/${bgImage})`,
+								backgroundPositionX:`-${f.frame.x}px`,
+								backgroundPositionY:`-${f.frame.y}px`
 							}}
 						/>
 					);
