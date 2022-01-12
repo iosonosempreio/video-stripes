@@ -1,7 +1,14 @@
+.container {
+	border-bottom: 1px solid #ddd;
+}
+
 .stripe {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+}
+.expanded {
+	flex-wrap: wrap;
 }
 
 .frame {
