@@ -7,40 +7,54 @@ const mainName = "stressed-out-remixed";
 
 export default function Stripes() {
 	const [loading, setLoading] = useState(0);
-	const [hashes, setHashes] = useState([]);
+	const [videos, setVideos] = useState([]);
 	useEffect(async () => {
-		let hashes = await d3.json(
-			process.env.PUBLIC_URL + `/assets/${mainName}-hashes.json`
+		let hashesMatched = await d3.csv(
+			process.env.PUBLIC_URL + `/assets/${mainName}-matched.csv`
 		);
-		hashes = hashes.slice(0, 50);
+		let originalData = await d3.csv(
+			process.env.PUBLIC_URL + `/assets/${mainName}-originaldata.csv`
+		);
+		let posts = originalData.map((d) => {
+			const video_url = d.video_url;
+			const hash = hashesMatched.find((h) => h.video_url === video_url).hash;
+			return { hash: hash, ...d };
+		});
+
+		posts = posts.slice(0, 50);
+
 		const loaded = [];
-		for (let i = 0; i < hashes.length; i++) {
+		for (let i = 0; i < posts.length; i++) {
 			setLoading(i);
-			const h = hashes[i];
+			const h = posts[i].hash;
 			const spritesheet = await d3.json(
-				process.env.PUBLIC_URL + `/assets/${mainName}-spritesheets-h128/${h}-1.json`
+				process.env.PUBLIC_URL +
+					`/assets/${mainName}-spritesheets-h128/${h}-1.json`
 			);
-			hashes[i] = {
+			posts[i] = {
 				hash: h,
+				postData: posts[i],
 				...spritesheet,
 			};
-			loaded.push(hashes[i]);
-			setHashes(loaded);
+			loaded.push(posts[i]);
+			await setVideos(loaded);
 		}
 		setLoading("done");
 	}, []);
 	return (
 		<>
 			<Navbar sticky="top" expand="lg" bg="light" variant="light">
-				{loading !== "done" && <p>Loading... {hashes.length}</p>}
-				{loading === "done" && <p>Finishes laoding {hashes.length} records.</p>}
+				{loading !== "done" && <p>Loading... {videos.length}</p>}
+				{loading === "done" && <p>Finishes laoding {videos.length} records.</p>}
 			</Navbar>
 			<Container fluid>
 				<Row>
 					<Col>
-						{hashes.map((h) => {
-							return <Video key={h.hash} data={h} />;
-						})}
+						<>
+							{videos.map((v) => {
+								return <Video key={v.hash} data={v} />;
+							})}
+						</>
 					</Col>
 				</Row>
 			</Container>
