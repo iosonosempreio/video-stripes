@@ -73,6 +73,30 @@ export default function Stripes() {
 					.slice(0, maxAmount);
 				loadFrames(filteredPosts);
 				break;
+			case "top-hashtags":
+				const hashtags = [
+					"fortnite",
+					"stressedout",
+					"lentejas",
+					"xyzbca",
+					"anime",
+					"minecraft",
+					// "f",
+					"edit",
+					"CapCut",
+					"pov",
+					"greenscreen"
+				];
+				const checktags = (arr) =>{
+					arr = arr.map(tag=>hashtags.indexOf(tag)!==-1)
+					return arr.indexOf(true)!==-1
+				}
+				filteredPosts = allPosts
+					.filter((d) => checktags(d.hashtags.split(",")))
+					.sort((a, b) => b.plays - a.plays)
+					.slice(0, maxAmount);
+				loadFrames(filteredPosts);
+				break;
 		}
 	}, [allPosts, filter]);
 
@@ -111,13 +135,16 @@ export default function Stripes() {
 							>
 								{filter}
 							</Dropdown.Toggle>
-	
+
 							<Dropdown.Menu>
 								<Dropdown.Item eventKey="most-followed">
 									Most followed accounts
 								</Dropdown.Item>
 								<Dropdown.Item eventKey="most-reproduced">
 									Most reproduced videos
+								</Dropdown.Item>
+								<Dropdown.Item eventKey="top-hashtags">
+								top-10-hashtag (sort plays)
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>

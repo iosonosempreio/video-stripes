@@ -34,7 +34,7 @@ export default function Video({ data }) {
 			<p>
 				Plays <span>{data.postData.plays}</span> – Likes{" "}
 				<span>{data.postData.likes}</span> – Author followers{" "}
-				<span>{data.postData.author_followers}</span>
+				<span>{data.postData.author_followers}</span> – Hashtags: <span>{data.postData.hashtags}</span>
 			</p>
 		</div>
 	);
