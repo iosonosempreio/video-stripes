@@ -1,0 +1,9 @@
+.stripe {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+.frame {
+	display: block;
+}
