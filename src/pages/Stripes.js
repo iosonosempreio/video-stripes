@@ -12,7 +12,7 @@ export default function Stripes() {
 		let hashes = await d3.json(
 			process.env.PUBLIC_URL + `/assets/${mainName}-hashes.json`
 		);
-		hashes = hashes.slice(0, 10);
+		// hashes = hashes.slice(0, 10);
 		const loaded = [];
 		for (let i = 0; i < hashes.length; i++) {
 			setLoading(i);
@@ -32,11 +32,11 @@ export default function Stripes() {
 	}, []);
 	return (
 		<>
-			<Navbar sticky="top" expand="lg">
+			<Navbar sticky="top" expand="lg" bg="light" variant="light">
 				{loading !== "done" && <p>Loading... {hashes.length}</p>}
 				{loading === "done" && <p>Finishes laoding {hashes.length} records.</p>}
 			</Navbar>
-			<Container>
+			<Container fluid>
 				<Row>
 					<Col>
 						{hashes.map((h) => {

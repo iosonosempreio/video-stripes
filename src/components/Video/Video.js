@@ -1,6 +1,6 @@
 import styles from "./Video.module.css";
 export default function Video({ data }) {
-  const bgImage = data.meta.image;
+	const bgImage = data.meta.image;
 	return (
 		<>
 			<p>Video: {data.hash}</p>
@@ -11,8 +11,13 @@ export default function Video({ data }) {
 					return (
 						<div
 							key={frame}
+							data-frame={frame}
 							className={styles.frame}
-							style={{ width: f.frame.w, height: f.frame.h, backgroundImage: `url(${process.env.PUBLIC_URL}/assets/${bgImage})` }}
+							style={{
+								width: f.frame.w,
+								height: f.frame.h,
+								backgroundImage: `url(${process.env.PUBLIC_URL}/assets/${bgImage})`,
+							}}
 						/>
 					);
 				})}
