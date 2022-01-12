@@ -14,7 +14,7 @@ import {
 const maxAmount = 250;
 
 export default function Stripes() {
-	const [dataset, setDataset] = useState("stressed-out-original");
+	const [dataset, setDataset] = useState("stressed-out-remixed");
 	const [loading, setLoading] = useState(0);
 	const [allPosts, setAllPosts] = useState([]);
 	const [videos, setVideos] = useState([]);

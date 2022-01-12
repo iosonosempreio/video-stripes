@@ -13,11 +13,12 @@ export default function Video({ data }) {
 				, by {data.postData.author}
 			</h6>
 			<div className={classNames(styles.stripe, {[styles.expanded]: expanded})} onClick={()=>setExpanded(!expanded)}>
-				{Object.keys(data.frames).map((frame) => {
+				{Object.keys(data.frames).reverse().map((frame,i) => {
 					const f = data.frames[frame];
 					return (
 						<div
-							key={frame}
+							key={i}
+							data-index={i}
 							data-frame={frame}
 							className={styles.frame}
 							style={{
