@@ -163,7 +163,7 @@ export default function Stripes() {
 					<>
 						{videos.map((v) => {
 							return (
-								<Col key={v.hash} xs={12} className={"mb-3 "}>
+								<Col key={v.hash} xs={12} className={"my-1 "}>
 									<Video data={v} />
 								</Col>
 							);

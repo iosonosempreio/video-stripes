@@ -1,5 +1,21 @@
+body {
+	background-color: #f3f3f3;
+}
+
 .container {
-	border-bottom: 1px solid #ddd;
+	/* border-bottom: 1px solid #ddd; */
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 1rem;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.5rem;
 }
 
 .stripe {
@@ -9,6 +25,15 @@
 }
 .expanded {
 	flex-wrap: wrap;
+}
+.forScreenshot {
+	width: 1280px;
+}
+.saveBtn {
+	cursor: pointer;
+}
+.forScreenshot .saveBtn {
+	display:none;
 }
 
 .frame {
