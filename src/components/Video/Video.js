@@ -10,7 +10,6 @@ export default function Video({ data }) {
 	function printDiv(div, hash) {
 		div.classList.add(styles.forScreenshot);
 		domtoimage.toPng(div).then((imgData) => {
-			console.log(imgData);
 			downloadURI(imgData, `${hash}.png`);
 			div.classList.remove(styles.forScreenshot);
 		});
